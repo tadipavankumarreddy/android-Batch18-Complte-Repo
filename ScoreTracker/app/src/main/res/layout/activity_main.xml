@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/layout_background_color"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="+"
+        android:textColor="@color/text_color_button"
+        android:backgroundTint="@color/button_backgroun_tint"
+        android:onClick="incrementScore"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="12"
+        android:background="@color/textview_background_color"
+        android:gravity="center"
+        android:id="@+id/result123"
+        android:text="0"
+        android:textColor="@color/textcolor_textview"
+        android:textSize="100sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="-"
+        android:textColor="@color/text_color_button"
+        android:backgroundTint="@color/button_backgroun_tint"
+        android:textSize="24sp"
+        android:onClick="decrementScore"
+        android:textStyle="bold" />
+
+</LinearLayout>
