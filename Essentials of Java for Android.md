@@ -433,3 +433,160 @@ A teacher wants to know the average marks of her students in a certain test
 Write a program where she can enter all her students marks and expect the average
 marks obtained by the class on a whole
 
+***for-each loop Syntax***
+```java
+	for(int b: collection_variable_value(that has integers)){
+		// statements
+	}
+```
+
+***Example***
+```java
+public class Main
+{
+	public static void main(String[] args) {
+        int a[] = new int[]{10,20,30,40,50,60,70};
+        
+        /*for(int i=0; i<a.length; i++){
+            System.out.print(a[i]+" ");
+        }*/
+        
+        for(int b : a){
+            System.out.print(b+" ");
+        }
+	}
+}
+```
+***Output***
+```
+10 20 30 40 50 60 70
+```
+
+***JUMP Statements in Java***
+- break -> breaks a loop
+- continue -> skips the following statements and takes the control to the next iteration
+- Usually these statements are associated with an if(...)
+***Example - Break***
+```java
+public class Main
+{
+	public static void main(String[] args) {
+        /*Print all the numbers between 1 and 100 till the number is exactly divisible by 39*/
+        for(int i=1; i<=100; i++){
+            if(i%39 == 0){
+                break;
+            }
+            System.out.print(i+" ");
+        }
+        
+	}
+}
+
+```
+***output***
+```
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38
+```
+
+***Example - Continue***
+```java
+public class Main
+{
+	public static void main(String[] args) {
+        /*print all the numbers between 1 and 100 that are not divisible by 3*/
+        for(int i=1; i<=100; i++){
+            if(i%3 == 0){
+                continue;
+            }
+            System.out.print(i+" ");
+        }
+	}
+}
+```
+
+***Output***
+```
+1 2 4 5 7 8 10 11 13 14 16 17 19 20 22 23 25 26 28 29 31 32 34 35 37 38 40 41 43 44 46 47 49 50 52 53 55 56 58 59 61 62 64 65 67 68 70 71 73 74 76 77 79 80 82 83 85 86 88 89 91 92 94 95 97 98 100 
+```
+
+***Java Oops***
+- OOPs -> Object oriented programming system
+- Java is a purely oop language
+- You cannot write any program without declaring a class.
+- Everything in java is built around objects
+
+***Important Concepts***
+- Objects
+- Classes
+- Inheritance
+- Polymorphism
+- Abstraction & Interfaces
+- Encapsulation
+- Collections
+
+***Objects***
+- Any Real world entity can be considered as an object if it exhibits attributes and behaviors
+- An Object is just the copy of a class (instance)
+
+***Class***
+- A class is a blueprint (template) of an Object (that you want to represent in your program)
+- Variables (instance variables) in the class they are allotted with memory when an object is created
+- Always keep the first letter of your class in Capital letter. This is not a rule, 
+this is just an adjustment that all developers agreed to follow. 
+
+***Syntax of declaring a class***
+```java
+	class Dog{
+		// Attributes -> Variables
+		// Behaviors -> Methods (functions)
+	}
+```
+
+***Example***
+```java
+
+class Dog{
+    String name;
+    int age;
+    double weight;
+    
+    // behaviors
+    public void barkAtStrangers(){
+        System.out.println("Bow!Bow! "+name);
+    }
+    
+    public void swim(){
+        System.out.println("I can Swim "+age);
+    }
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+       Dog d1 = new Dog();
+       d1.name = "Tommy";
+       d1.age = 14;
+       d1.weight = 8.98;
+       d1.barkAtStrangers();
+       
+       Dog d2 = new Dog();
+       d2.name = "Jimmy";
+       d2.age = 15;
+       d2.weight = 9.78;
+       d2.barkAtStrangers();
+       d2.swim();
+       d1.swim();
+       
+       Dog d3 = d1;
+       d3.swim();
+	}
+}
+```
+
+***output***
+```
+Bow!Bow! Jimmy
+I can Swim 15
+I can Swim 14
+I can Swim 14
+```
