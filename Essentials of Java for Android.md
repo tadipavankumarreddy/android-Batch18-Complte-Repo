@@ -659,4 +659,4 @@ I can Swim 14
 * The one that lets another class aquire its properties is called as "Base class" or "Parent Class" or "Super class".
 
 ***Types of Inheritance***
-![Picture](/picture1)
+![Picture](/picture1.png)
