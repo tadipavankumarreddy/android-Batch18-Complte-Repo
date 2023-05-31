@@ -590,3 +590,73 @@ I can Swim 15
 I can Swim 14
 I can Swim 14
 ```
+
+***Constructors in java***
+* At the time of initializing an object, if you want to intialize a few variables of that object, we can use a constructor
+* There is a default constructor available for every class you create.
+* In Java, We can have ,multiple constructors for the same class (This is called constructor Overloading)
+* Types of Constructors
+	* Default Constructor (No arguments)
+	* Parameterized constructor (Arguments)
+* Constructors look like methods but does not have return type.
+* The name of the constructor should be the same as that of the class name
+***Example - Parameterized Constructor in Java***
+
+```java
+class Dog{
+    String name;
+    int age;
+    double weight;
+    // Even if you do not write this, it is there
+    // However, if you define a parameterized constructor, we will not get this by default.
+    Dog(){
+        // this is the default constructor -no arguments
+    }
+    Dog(String n, int a, double w){
+        name = n;
+        age = a;
+        weight = w;
+    }
+    
+    // behaviors
+    public void barkAtStrangers(){
+        System.out.println("Bow!Bow! "+name);
+    }
+    
+    public void swim(){
+        System.out.println("I can Swim "+age);
+    }
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+		 Dog d1 = new Dog("Tommy",14,8.98);
+         d1.barkAtStrangers();
+       
+       Dog d2 = new Dog();
+       d2.name = "Jimmy";
+       d2.age = 15;
+       d2.weight = 9.78;
+       d2.barkAtStrangers();
+       d2.swim();
+       d1.swim();
+	}
+}
+
+```
+***Output***
+```
+Bow!Bow! Tommy
+Bow!Bow! Jimmy
+I can Swim 15
+I can Swim 14
+```
+
+***Inheritance in java***
+* It is a mechanism in which one class aquires the attributes and behaviors of another class
+* The class that acquires the properties of another class is called as the "Derived class" or "Sub Class" or "child Class".
+* The one that lets another class aquire its properties is called as "Base class" or "Parent Class" or "Super class".
+
+***Types of Inheritance***
+![Picture](/picture1)
