@@ -660,3 +660,143 @@ I can Swim 14
 
 ***Types of Inheritance***
 ![Picture](/picture1.png)
+
+* Single 
+* Multi Level
+* Hierarchical
+* Multiple (this is not supported)
+
+***Example - Single inheritance***
+```java
+import java.lang.Math;
+
+class Parent{
+    int a;
+    
+    public int square(){
+        return a*a;
+    }
+}
+
+// extends keyword must be used to aquire the properties of the super class
+class Child extends Parent{
+    double d;
+    
+    public double squareRoot(){
+        return Math.sqrt(d);
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        Child c = new Child();
+        c.a = 10;
+        int x = c.square();
+        System.out.println(x);
+        
+        c.d = 9;
+        double y = c.squareRoot();
+        System.out.println(y);
+    }
+}
+```
+
+**Output**
+```
+100
+3.0
+```
+
+***Example - Multi Level inheritance***
+```java
+import java.lang.Math;
+
+class Parent{
+    int a;
+    
+    public int square(){
+        return a*a;
+    }
+}
+
+// extends keyword must be used to aquire the properties of the super class
+class Child extends Parent{
+    double d;
+    
+    public double squareRoot(){
+        return Math.sqrt(d);
+    }
+}
+
+class GrandChild extends Child{
+    double x,y;
+    public double num2Power(){
+        return Math.pow(x,y);
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        GrandChild c = new GrandChild();
+        c.a = 10;
+        int x = c.square();
+        System.out.println(x);
+        
+        c.d = 9;
+        double y = c.squareRoot();
+        System.out.println(y);
+        
+        c.x = 2;
+        c.y = 4;
+        double z = c.num2Power();
+        
+        System.out.println(z);
+    }
+}
+```
+
+***Output***
+```
+100
+3.0
+16.0
+```
+
+***Example - Hierarchical Inheritance***
+```java
+class Animal{
+    public void eat(){
+        System.out.println("Eating...");
+    }
+}
+
+class Dog extends Animal{
+    public void bark(){
+        System.out.println("BOW BOW!!");
+    }
+}
+
+class Cat extends Animal{
+    public void shout(){
+        System.out.println("MEOW MEOW!!");
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        Cat c = new Cat();
+        Dog d = new Dog();
+        
+        c.eat();  c.shout();
+        d.eat();  d.bark();
+    }
+}
+```
+
+***output***
+```
+Eating...
+MEOW MEOW!!
+Eating...
+BOW BOW!!
+```
