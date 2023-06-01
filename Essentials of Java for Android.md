@@ -800,3 +800,245 @@ MEOW MEOW!!
 Eating...
 BOW BOW!!
 ```
+
+***Polymorphism in Java***
+- Means Existing in multiple forms
+- Two polymorphisms
+	- Run time Polymorphism (method overriding)
+	- Compile Time Polymorphism (method overloading)
+* Compile Time Polymorphism
+	- if a class has multiple methods of the same name but different number/ different types of parameters, then it is known as compile time polymorphism
+
+***Example - Compile time Polymorphism***
+```java
+public class Main
+{
+	public static void main(String[] args) {
+		SumOfNumbers s = new SumOfNumbers();
+		s.sum(10,20);
+		s.sum(10,20,30);
+		s.sum(10.4,4.56);
+	}
+}
+
+class SumOfNumbers{
+    public void sum(int a, int b){
+        System.out.println(a+b);
+    }
+    
+    public void sum(int a, int b, int c){
+        System.out.println(a+b+c);
+    }
+    
+    public void sum(double a, double b){
+        System.out.println(a+b);
+    }
+}
+```
+***Output***
+```
+30
+60
+14.96
+```
+
+- Run time Polymorphism (Method overriding)
+	- Inorder to implement method overriding, we need the inheritance implemented
+	- Method overriding means that creating the same method in the child class which is already present in the parent class to redefine how the method works. 
+
+***Example - Method Overriding***
+```java
+class Summing{
+    public void sum(int a, int b){
+        System.out.println(a+b);
+    }
+}
+
+class SumOfNumbers extends Summing{
+    
+    @Override
+    public void sum(int a, int b){
+        System.out.println("Counting...");
+        System.out.println(a+b);
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        SumOfNumbers s = new SumOfNumbers();
+        s.sum(10,20);
+    }
+    
+}
+
+```
+
+***Output***
+```
+Counting...
+30
+```
+
+***Super Keyword in java***
+- **super** keyword in java is used to refer to the immediate super class object
+- If you create an object for a class B that extends to class A, implicitly there will be an object created for class A. to refer to this implicitly created object, we use **super** keyword.
+***Example - Accessing immediate parent class's variable***
+```java
+class A{
+    int count = 0;
+}
+
+class B extends A{
+    int count = 0;
+    public void display(){
+        super.count += 10; //super.count = super.count + 10;
+        System.out.println(super.count);
+        System.out.println(count);
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        B b = new B();
+        b.count = b.count + 1;
+        b.display();
+    }
+}
+```
+
+***output***
+```
+10
+1
+```
+
+***Example - Accessing the immediate parent class's method using super keyword***
+```java
+class A{
+    int count = 0;
+    public void display(){
+        System.out.println("Pavan");
+    }
+}
+
+class B extends A{
+    int count = 0;
+    
+    
+    public void printme(){
+        super.count += 10; //super.count = super.count + 10;
+        System.out.println(super.count);
+        System.out.println(count);
+        super.display();
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        B b = new B();
+        b.count = b.count + 1;
+        b.printme();
+    }
+}
+```
+
+***Output***
+```
+10
+1
+Pavan
+```
+
+***Example - Super keyword to access the immediate parent class's constructor***
+```java
+class A{
+    int count = 0;
+    A(int c){
+        count = c;
+        System.out.println("Super class constructor is called!!");
+    }
+    public void display(){
+        System.out.println("Pavan");
+    }
+}
+
+class B extends A{
+    int count = 0;
+    B(){ 
+        // constructor of the super class can be called with in a constructor and
+        // that too the statement `super(...)` should be first line in the constructor
+        super(123);
+        System.out.println("We are in subclass now");
+    }
+    
+    public void printme(){
+        super.count += 10; //super.count = super.count + 10;
+        System.out.println(super.count);
+        System.out.println(count);
+        super.display();
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        B b = new B();
+        b.count = b.count + 1;
+        b.printme();
+    }
+}
+```
+
+***output***
+```
+Super class constructor is called!!
+We are in subclass now
+133
+1
+Pavan
+```
+
+***Two Types Variables***
+- ***class Variables*** - they belong to the class and is shared commonly by all the objects that are created for that class
+- ***Instance Variables*** - They belong to the object (instance)
+
+***Static keyword***
+- It is used for better memory management
+- static keyword can also be applied for methods, blocks and nested classes
+- Java Static variables
+	- Variables that are defined with static keyword
+	- if you have a common property that needs to be applied for all the objects that you create for that class. then, to manage the memory well, you can use static variable.
+	- AS the static variable belongs to the class, we can access it without creating an object
+
+***Example - Using static keyword to create a class variable***
+```java
+class A{
+    // the aim is to claculate the number of objects created for this class
+    static int count = 0;
+    A(){
+        count++;
+    }
+    
+    public void display(){
+        System.out.println("there are "+count+" Objects created for this class");
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        A a = new A();
+        a.display();
+        A b = new A();
+        A c = new A();
+        A d = new A();
+        A e = new A();
+        A f = new A();
+        System.out.println(A.count);
+    }
+}
+```
+***output***
+```
+there are 1 Objects created for this class
+6
+```
+
