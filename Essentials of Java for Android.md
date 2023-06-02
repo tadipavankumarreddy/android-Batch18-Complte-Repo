@@ -1042,3 +1042,372 @@ there are 1 Objects created for this class
 6
 ```
 
+***static Metods***
+- Methods that belong to the class but not the instance are called static methods
+- static methods can be accessed directly with out an instance
+- static methods cannot access non static members of a class
+
+***Example***
+```java
+class A{
+    int count = 0; // this is an instance variable
+    A(){
+        count++;
+    }
+    
+    public static void display(){
+        System.out.println(count);
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        A a = new A();
+        A.display();
+    }
+}
+```
+
+***output***
+```
+Main.java:8: error: non-static variable count cannot be referenced from a static context
+        System.out.println(count);
+                           ^
+1 error
+```
+
+***Static Methods***
+- Methods that belong to the class but not the instances(Objects) of the class 
+- Static methods can be accessed directly
+- Static methods cannot access the non static members (Methods and variables) in the Class
+***Example***
+```Java
+class A{
+    int count = 0;
+    
+    A(){
+        count++;   
+    }
+    
+    public static void display(){
+        System.out.println(count);
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        A a = new A();
+        A.display();
+    }
+}
+```
+
+***Output***
+```
+Main.java:9: error: non-static variable count cannot be referenced from a static context
+        System.out.println(count);
+                           ^
+1 error
+```
+
+***java Static Blocks***
+- These are the blocks that can be used to initialize the static data members of a class 
+- It is something that gets executed before main() method.
+
+```Java
+
+class Main{
+    static{
+        System.out.println("Executed before main");
+    }
+    public static void main (String[] args) {
+        System.out.println("Executed in main(...)");
+    }
+}
+```
+
+***Output***
+```
+Executed before main
+Executed in main(...)
+```
+
+***Question:*** is it possible to execute a java program without using the main method ?    
+
+***Answer:*** No, from the latest versions of java, it is not at all possible. But in the older versions of java, we can.
+
+***Example***
+```Java
+class Main{
+    static{
+        System.out.println("Executed before main");
+    }
+    
+}
+```
+***Output***
+```
+Error: Main method not found in class Main, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+```
+
+
+***this keyword in Java***
+
+- ***this*** is a reference variable that refers to the current class Object
+- Uses of ***this*** keyword
+	- ***this*** can be used to implicitly invoke the current class method
+	- ***this()*** can be used to implicitly invoke the current class constructor.
+	- ***this*** can be passed as an argument in a method call
+	
+***Example - this can be used to refer to the current class instance Variables***
+
+```Java
+class Employee{
+    String name;
+    int age;
+    
+    Employee(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    
+    public void display(){
+        System.out.println(name+" "+age);
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        Employee e = new Employee("pavan",18);
+        e.display();
+    }
+}
+```
+
+***Output***
+```
+pavan 18
+```
+
+***Example - this can be used to access the current objects Methods***
+
+```Java
+class Boss{
+    public void printDeveloperInfo(){
+        System.out.println("The developer has 8 years of experience");
+    }
+}
+
+class Employee extends Boss{
+    String name;
+    int age;
+    
+    Employee(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    
+    public void display(){
+        System.out.println(name+" "+age);
+        this.printDeveloperInfo();
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        Employee e = new Employee("pavan",18);
+        e.display();
+    }
+}
+```
+
+***Output***
+```
+pavan 18
+The developer has 8 years of experience
+```
+
+***Example - this can be used to call the current objects constructor***
+
+```Java
+class Boss{
+    public void printDeveloperInfo(){
+        System.out.println("The developer has 8 years of experience");
+    }
+}
+
+class Employee extends Boss{
+    String name;
+    int age;
+    int salary;
+    
+    Employee(String name, int age){
+        this(name, age, 30000);
+    }
+    
+    Employee(String name, int age, int salary){
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+    
+    public void display(){
+        System.out.println(name+" "+age+" "+salary);
+        this.printDeveloperInfo();
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        Employee e = new Employee("pavan",18);
+        e.display();
+    }
+}
+```
+
+***Output***
+```
+pavan 18 30000
+The developer has 8 years of experience
+```
+
+***final keyword***
+- final keyword restricts the user to perform certain kinds of actions
+	- final variables cannot be altered
+	- final methods cannot be overrided
+	- final classes cannot be inherited.
+
+***Example - the final classes cannot be inherited***
+```Java
+final class Pavan{
+    
+}
+
+class Kumar extends Pavan{
+    
+}
+
+
+class Main{
+    public static void main (String[] args) {
+        System.out.println("Hello world");
+    }
+}
+```
+
+**Output**
+```
+Main.java:5: error: cannot inherit from final Pavan
+class Kumar extends Pavan{
+                    ^
+1 error
+```
+
+***Example - the value of the final variable cannot be altered***
+
+```Java
+
+class Main{
+    static final int count = 20;
+    public static void main (String[] args) {
+        count = 25;
+    }
+}
+```
+
+***Output***
+```
+Main.java:5: error: cannot assign a value to final variable count
+        count = 25;
+        ^
+1 error
+```
+
+***Example - final methods cannot be overrided***
+```Java
+class A{
+    public final void display(){
+        System.out.println("Hello A");
+    }
+}
+
+class B extends A{
+    @Override
+    public void display(){
+        System.out.println("Hello B");
+    }
+}
+class Main{
+    
+    public static void main (String[] args) {
+        B b = new B();
+        b.display();
+    }
+}
+```
+
+***output***
+```
+Main.java:9: error: display() in B cannot override display() in A
+    public void display(){
+                ^
+  overridden method is final
+1 error
+```
+
+***Abstract classes in Java***
+- When you declare a class with ```abstract``` keyword, that is called as an abstract class
+- In abstract clases, along with the normal methods  that we declare and define normally, we can also have abstract methods that does have declaration but does not have definition. 
+- Abstraction is the process of hiding the implemetation details and also showing the functionlity only to the user. 
+- Two Ways to achieve Abstraction
+	- using abstract classes and methods (0% - 100%)
+	- interfaces (100%)
+
+***Important points to remember***
+- abstract classes must be inherited and in those classes the methods that are declared as abstract should be implemented. 
+- abstract classes cannot have objects (instances)
+
+***Example***
+```Java
+abstract class RBI{
+    RBI(){
+        System.out.println("this bank follows RBI guidelines");
+    }
+    
+    
+    public final int personalLoanRate(){
+        return 7;
+    }
+}
+
+class  SBI extends RBI{
+    
+    public int homeLoanRate(){
+        return 11;
+    }
+}
+
+class ICICI extends RBI{
+    public int homeLoanRate(){
+        return 16;
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        SBI s = new SBI();
+        System.out.println(s.personalLoanRate());
+        System.out.println(s.homeLoanRate());
+    }
+}
+```
+
+***Output***
+```
+this bank follows RBI guidelines
+7
+11
+```
+
