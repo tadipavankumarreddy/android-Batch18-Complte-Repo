@@ -1411,3 +1411,235 @@ this bank follows RBI guidelines
 11
 ```
 
+***Interfaces in Java***    
+- An Interface in java is a blueprint of a class
+- It consists of static constants and abstract Methods
+- With Interfaces, we can ensure 100% of Abstraction
+- With Interfaces, we get to implement Multiple Inheritance (which is not supported by Java, by default).
+
+***Syntax***
+
+```Java
+interface InterfaceName{
+	// static constants
+	// abstract Methods
+}
+```
+
+***Example***
+```Java
+interface NareshTech{
+    void display();
+}
+
+class A implements NareshTech{
+    public void display(){
+        System.out.println("Hello World!");
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		A a = new A();
+		a.display();
+	}
+}
+
+```
+
+***Output***
+```
+Hello World!
+```
+
+***Example - Implementing Multiple Inheritance***
+```Java
+interface A{
+    void printMessage();
+}
+
+interface B{
+    void display();
+}
+
+class C implements A,B{
+    public void printMessage(){
+        System.out.println("Hello");
+    }
+    
+    public void display(){
+        System.out.println("Hi");
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        C c =  new C();
+        c.printMessage();
+        c.display();
+    }
+}
+```
+
+***Output***
+```
+Hello
+Hi
+```
+
+***Two Points to remember***
+- You `implements` an Interface
+- You `extends` a class
+
+***Collections in Java***
+- When you collect multiple objects of the same class in a data structure and you are able to manipulate them, it is called as a collection
+- In java we have many interfaces and classes to achieve this collections.
+- Interfaces
+	- Set
+	- List
+	- Queue
+	- Deque
+- Classes
+	- ArrayList
+	- Vector
+	- LinkedList
+	- HashSet
+	- TreeSet...
+
+***List Interface***
+- We can store the ordered collection of objects. 
+- You can also have duplicates
+
+```Java
+import java.util.*;
+
+class Main{
+    public static void main (String[] args) {
+        List<String> names = new ArrayList<String>();
+        names.add("Pavan");
+        names.add("Krishna");
+        names.add("Abhi");
+        
+        
+        names.remove(0);
+        
+        for(String n: names){
+            System.out.println(n);
+        }
+        
+        System.out.println(names.size());
+    }
+}
+```
+
+***Output***
+```
+Krishna
+Abhi
+2
+```
+
+***Example 2***
+```Java
+import java.util.*;
+
+class A{
+    String name;
+    int age;
+    
+    A(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+}
+
+class Main{
+    public static void main (String[] args) {
+        ArrayList<A> names = new ArrayList<A>();
+        names.add(new A("Pavan",18));
+        names.add(new A("Naga",56));
+        names.add(new A("Priya", 27));
+        
+        names.remove(1);
+        
+        for(A a: names){
+            System.out.println(a.name+" "+a.age);
+        }
+    }
+}
+```
+
+***output***
+```
+Pavan 18
+Priya 27
+```
+
+***Example***
+```Java
+import java.util.*;
+
+
+class Main{
+    public static void main (String[] args) {
+        ArrayList<Integer> names = new ArrayList<Integer>();
+        names.add(18);
+        names.add(19);
+        names.add(20);
+        
+        names.remove(1);
+        
+        for(Integer a: names){
+            System.out.println(a);
+        }
+    }
+}
+```
+
+***output***
+```
+18
+20
+```
+
+***LinkedList***
+- LinkedList implements the collection interface. 
+- Internally, Doubly linked lists are used so that you can traverse forward or backwards.
+- It can have duplicates
+- Fast
+
+***Example***
+```Java
+import java.util.*;
+
+
+class Main{
+    public static void main (String[] args) {
+        LinkedList<String> names = new LinkedList<String>();
+        
+        names.add("Name 1");
+        names.add("Name 2");
+        names.add("Name 3");
+        names.add("Name 4");
+        names.addFirst("Name 5");
+        
+        Iterator<String> i = names.iterator();
+        
+        while(i.hasNext()){
+            System.out.println(i.next());
+        }
+    }
+}
+```
+
+***output***
+```
+Name 5
+Name 1
+Name 2
+Name 3
+Name 4
+```
+
+***Assignment: Try and learn HashSet and TreeSet***
+
