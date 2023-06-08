@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Android UI Components</string>
+
+    <string-array name="countries">
+        <item>--Select the country--</item>
+        <item>India</item>
+        <item>Srilanka</item>
+        <item>Pakistan</item>
+        <item>Bangladesh</item>
+        <item>China</item>
+        <item>Britain</item>
+        <item>USA</item>
+    </string-array>
 </resources>
