@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="4dp"
     tools:context=".MainActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/address_til"
         android:layout_width="0dp"
         android:hint="Enter address"
-        android:layout_margin="4dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +24,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/button1"
         android:layout_width="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,5 +32,66 @@
         android:text="Open Maps"
         android:onClick="openMaps"
         android:layout_height="wrap_content"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/url_til"
+        android:layout_width="0dp"
+        android:hint="Enter URL"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/url_til"
+        android:text="Open Browser"
+        android:onClick="openBrowser"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phone_num"
+        android:layout_width="0dp"
+        android:hint="Enter Phone Number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="match_parent"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@+id/phone_num"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:text="open Dailer"
+        android:onClick="openDailer"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/givemetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web|phone|email"
+        android:text="@string/my_data"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
