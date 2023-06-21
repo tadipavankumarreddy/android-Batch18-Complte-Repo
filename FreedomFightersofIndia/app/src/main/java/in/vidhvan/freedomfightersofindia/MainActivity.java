@@ -1,6 +1,8 @@
 package in.vidhvan.freedomfightersofindia;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
@@ -9,14 +11,19 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<FreedomFighters> fighters;
+    private List<FreedomFighters> fighters;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        recyclerView = findViewById(R.id.recyclerview);
         createData();
+
+        FreedomAdapter adapter = new FreedomAdapter(this,fighters);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void createData() {
@@ -41,7 +48,22 @@ public class MainActivity extends AppCompatActivity {
          // Nehru
         FreedomFighters nehru = new FreedomFighters("Jawaharlal Nehru", "1889-1964", "The son of Motilal Nehru, a prominent lawyer and Indian nationalist, Jawaharlal Nehru was educated in England—at Harrow School and Trinity College, Cambridge, and trained in the law at the Inner Temple. He became a barrister, returned to India, enrolled at the Allahabad High Court and gradually began to take an interest in national politics, which eventually became a full-time occupation. He joined the Indian National Congress, rose to become the leader of a progressive faction during the 1920s, and eventually of the Congress, receiving the support of Mahatma Gandhi who was to designate Nehru as his political heir.", R.drawable.nehru);
         fighters.add(nehru);
+
+        //balagangadhar tilak
+        FreedomFighters tilak = new FreedomFighters("Bala Gangadhar Tilak", "1856-1920","Keshav Gangadhar Tilak was born on 23 July 1856 in an Marathi Hindu Chitpavan Brahmin family in Ratnagiri, the headquarters of the Ratnagiri district of present-day Maharashtra (then Bombay Presidency).[1] His ancestral village was Chikhali. His father, Gangadhar Tilak was a school teacher and a Sanskrit scholar who died when Tilak was sixteen. In 1871, Tilak was married to Tapibai (Née Bal) when he was sixteen, a few months before his father's death. After marriage, her name was changed to Satyabhamabai. He obtained his Bachelor of Arts in first class in Mathematics from Deccan College of Pune in 1877. ", R.drawable.tilak);
+        fighters.add(tilak);
+
+        FreedomFighters pandey = new FreedomFighters("Mangal Pandey","1827-1857","On the afternoon of 29 March 1857, Lieutenant Baugh, Adjutant of the 34th Bengal Native Infantry, then stationed at Barrackpore was informed that several men of his regiment were in an excited state. Further, it was reported to him that one of them, Mangal Pandey, was pacing in front of the regiment's guard room by the parade ground, armed with a loaded musket, calling upon the men to rebel and threatening to shoot the first European that he set eyes on. Testimony at a subsequent enquiry recorded that Pandey, unsettled by unrest amongst the sepoys and intoxicated by the narcotic bhang, had seized his weapons and run to the quarter-guard building upon learning that a detachment of British soldiers was disembarking from a steamer near the cantonment.", R.drawable.pandey);
+        fighters.add(pandey);
+
+        FreedomFighters jhansi = new FreedomFighters("Rani Lakshmibai","1828-1858","Rani Lakshmibai (or Rani Lakshmi Bai) was born on 19 November 1828[3][4] (some sources say 1835)[2][5][6] in the town of Benares (now Varanasi) into a Marathi Karhade Brahmin family.[7] She was named Manikarnika Tambe and was nicknamed Manu.[8] Her father was Moropant Tambe[9] and her mother Bhagirathi Sapre (Bhagirathi Bai). Her parents came from the Tambe village of the Guhagar taluka located in the Ratnagiri district of Maharashtra.[10] Her mother died when she was four years old. Her father was the Commander of the war of Kalyanpranth. Her father worked for Peshwa Baji Rao II of Bithoor district.[11] The Peshwa called her \"Chhabili\", which means \"beautiful \" and \"lively and cheerful\". She was educated at home and was taught to read and write, and was more independent in her childhood than others of her age; her studies included shooting, horsemanship, fencing[12][13] and mallakhamba with her childhood friends Nana Sahib and Tantia Tope.", R.drawable.jhansi);
+        fighters.add(jhansi);
     }
 
+
     // TODO 1: Prepare Data
+    // TODO 2: Create a layout file that defines how you want to display each item on the recyclerview
+    // TODO 3: Add the Recyclerview to the project
+    // TODO 4: Create an Adapter (along with a ViewHolder)
+    // TODO 5: add the adapter and layout manager on Recyclerview
 }
