@@ -1,12 +1,14 @@
 package in.vidhvan.freedomfightersofindia;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,7 +49,7 @@ public class FreedomAdapter extends RecyclerView.Adapter<FreedomAdapter.FreedomV
         return fighters.size();
     }
 
-    public class FreedomVH extends RecyclerView.ViewHolder {
+    public class FreedomVH extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView photo;
         TextView name, lived;
 
@@ -57,6 +59,18 @@ public class FreedomAdapter extends RecyclerView.Adapter<FreedomAdapter.FreedomV
             photo = itemView.findViewById(R.id.imageView2);
             name = itemView.findViewById(R.id.fighter_name);
             lived = itemView.findViewById(R.id.life_tv);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            // the click is handled here
+            // Get the Adapter Position
+            int position = getAdapterPosition();
+            FreedomFighters fighterDetails = fighters.get(position);
+            Intent i = new Intent(context, DetailsActivity.class);
+            i.putExtra("DATA",fighterDetails);
+            context.startActivity(i);
         }
     }
 }

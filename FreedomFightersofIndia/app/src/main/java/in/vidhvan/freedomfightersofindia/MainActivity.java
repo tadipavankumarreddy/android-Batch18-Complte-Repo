@@ -1,8 +1,10 @@
 package in.vidhvan.freedomfightersofindia;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 
@@ -23,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
         FreedomAdapter adapter = new FreedomAdapter(this,fighters);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        /*recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true));*/
+        /*recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,
+                true));*/
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        /*recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));*/
     }
 
     private void createData() {

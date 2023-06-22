@@ -1,7 +1,9 @@
 package in.vidhvan.freedomfightersofindia;
 
+import java.io.Serializable;
+
 // POJO - Plain Old Java Object
-public class FreedomFighters {
+public class FreedomFighters implements Serializable {
     String name;
     String activeYears;
     String description;
