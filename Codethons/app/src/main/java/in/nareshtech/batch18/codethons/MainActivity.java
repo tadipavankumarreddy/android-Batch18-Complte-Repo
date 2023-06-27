@@ -1,6 +1,7 @@
 package in.nareshtech.batch18.codethons;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,7 @@ import java.util.zip.InflaterInputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView result;
+    private RecyclerView recyclerView;
     private ProgressBar progressBar;
 
     private String BASE_URL = "https://kontests.net/api/v1/all";
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        result = findViewById(R.id.result);
+        recyclerView = findViewById(R.id.recyclerview);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadData() {
         progressBar.setVisibility(View.VISIBLE);
-        FetchData data = new FetchData(progressBar,result);
+        FetchData data = new FetchData(this,progressBar,recyclerView);
         data.execute(BASE_URL);
     }
 

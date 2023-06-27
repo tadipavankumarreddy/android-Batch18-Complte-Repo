@@ -6,22 +6,33 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class FetchData extends AsyncTask<String,Void,String> {
 
+    private Context context;
     private ProgressBar progressBar;
-    private TextView textView;
+    private RecyclerView recyclerView;
 
-    public FetchData(ProgressBar progressBar, TextView textView) {
+    public FetchData(Context context,ProgressBar progressBar, RecyclerView recyclerView) {
+        this.context = context;
         this.progressBar = progressBar;
-        this.textView = textView;
+        this.recyclerView = recyclerView;
     }
 
     // this method runs on the Worker Thread (in the background)
@@ -54,6 +65,26 @@ public class FetchData extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         progressBar.setVisibility(View.INVISIBLE);
-        textView.setText(s);
+        List<Contests> contestsList = new ArrayList<>();
+        try {
+            JSONArray allData = new JSONArray(s);
+            for(int i=0; i<allData.length(); i++){
+                // logic to parse individual objects must go here
+                JSONObject obj = allData.getJSONObject(i);
+                String name = obj.getString("name");
+                String start = obj.getString("start_time");
+                String end = obj.getString("end_time");
+                String duration = obj.getString("duration");
+                String siteUrl = obj.getString("url");
+                String siteName = obj.getString("site");
+                Contests contests = new Contests(name,start,end,duration,siteUrl,siteName);
+                contestsList.add(contests);
+            }
+            ContestsAdapter adapter = new ContestsAdapter(context,contestsList);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
