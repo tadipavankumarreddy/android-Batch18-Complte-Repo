@@ -1,6 +1,8 @@
 package in.nareshtech.batch19.topheadlines;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -23,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
     String link = "https://www.googleapis.com/books/v1/volumes?q=";
     private EditText query;
-    private TextView result;
+    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         query = findViewById(R.id.search_query);
-        result = findViewById(R.id.textView);
+        rv = findViewById(R.id.recyclerview);
     }
 
     public void fetchData(View view) {
@@ -42,14 +44,12 @@ public class MainActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.GET, u, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                result.setText("");
+
                 Gson gson = new Gson();
                 SourceData sd = gson.fromJson(response,SourceData.class);
-                for(Item i: sd.getItems()){
-                    VolumeInfo vi = i.getVolumeInfo();
-                    String title = vi.getTitle();
-                    result.append(title+"\n\n");
-                }
+                BooksAdapter adapter = new BooksAdapter(MainActivity.this,sd.getItems());
+                rv.setAdapter(adapter);
+                rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
             }
         }, new Response.ErrorListener() {
             @Override
