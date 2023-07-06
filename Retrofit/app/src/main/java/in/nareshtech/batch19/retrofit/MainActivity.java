@@ -35,6 +35,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void postData(View view) {
+        // we are supposed to post data
+        DataPost post = new DataPost(1,"Pavan","Kumar");
+        postService.doPost(post).enqueue(new Callback<DataResponse>() {
+            @Override
+            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+                DataResponse dataResponse = response.body();
+                Toast.makeText(MainActivity.this, dataResponse.getBody(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<DataResponse> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Better Luck Next Time", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void getData(View view) {
