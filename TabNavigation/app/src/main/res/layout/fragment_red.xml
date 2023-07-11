@@ -4,8 +4,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FF0000"
     tools:context=".RedFragment">
 
+    <EditText
+        android:id="@+id/number_1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Enter a number"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/number_2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Enter a number"
+        android:inputType="number" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="+" />
+
+        <Button
+            android:id="@+id/substract"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="-" />
+
+        <Button
+            android:id="@+id/multiply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="*" />
+
+        <Button
+            android:id="@+id/divide"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="/" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/result"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:textSize="100sp"
+        android:gravity="center"
+        android:text="0"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
